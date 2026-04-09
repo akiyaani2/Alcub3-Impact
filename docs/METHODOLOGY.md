@@ -51,6 +51,7 @@ Current public components:
 - **Water quality**
   - primary evidence type: measured
   - current source family: EPA drinking-water and violation records
+  - current implementation note: selected contaminants are screened against public EPA threshold references when units are compatible
 - **Drought**
   - primary evidence type: measured
   - current source family: public drought classifications
@@ -59,6 +60,8 @@ Current public components:
   - current source family: public flood / gauge state signals
 
 This public score is a trust-building first release, not a final scientific standard.
+
+The current score payload and public methodology version should be treated consistently as **`v0.1`**.
 
 ## AI Water Footprint
 

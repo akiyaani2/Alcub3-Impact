@@ -72,5 +72,5 @@ def test_methodology_included():
     )
 
     assert "methodology" in result
-    assert result["methodology"]["version"] == "1.0"
+    assert result["methodology"]["version"] == "v0.1"
     assert "weights" in result["methodology"]

@@ -25,6 +25,96 @@ PRIORITY_CONTAMINANTS = [
     "Copper",
 ]
 
+# Thresholds are used here as public screening guidance, not as a substitute for direct
+# utility notices, lab tests, or a full regulatory compliance determination.
+CONTAMINANT_THRESHOLDS = {
+    "Arsenic": {"value": 10.0, "unit": "ug/L", "basis": "EPA MCL"},
+    "Lead": {"value": 15.0, "unit": "ug/L", "basis": "EPA action level"},
+    "Nitrate": {"value": 10.0, "unit": "mg/L", "basis": "EPA MCL as N"},
+    "PFOS": {"value": 4.0, "unit": "ng/L", "basis": "EPA MCL"},
+    "PFOA": {"value": 4.0, "unit": "ng/L", "basis": "EPA MCL"},
+    "Chromium": {"value": 100.0, "unit": "ug/L", "basis": "EPA MCL (total chromium)"},
+    "Uranium": {"value": 30.0, "unit": "ug/L", "basis": "EPA MCL"},
+    "Radium-226": {
+        "value": 5.0,
+        "unit": "pCi/L",
+        "basis": "EPA combined radium screening threshold",
+    },
+    "Fluoride": {"value": 4.0, "unit": "mg/L", "basis": "EPA MCL"},
+    "Copper": {"value": 1.3, "unit": "mg/L", "basis": "EPA action level"},
+}
+
+CONTAMINANT_ALIASES = {
+    "Arsenic": ("arsenic",),
+    "Lead": ("lead",),
+    "Nitrate": ("nitrate", "nitrate as n", "nitrite+nitrate"),
+    "PFOS": ("pfos", "perfluorooctane sulfonate"),
+    "PFOA": ("pfoa", "perfluorooctanoic acid"),
+    "Chromium": ("chromium",),
+    "Uranium": ("uranium",),
+    "Radium-226": ("radium-226", "radium 226", "radium,226"),
+    "Fluoride": ("fluoride",),
+    "Copper": ("copper",),
+}
+
+UNIT_FACTORS_TO_NG_L = {
+    "mg/l": 1_000_000.0,
+    "mg/l as n": 1_000_000.0,
+    "mg/l as nitrogen": 1_000_000.0,
+    "ug/l": 1_000.0,
+    "µg/l": 1_000.0,
+    "ng/l": 1.0,
+    "ppt": 1.0,
+}
+
+UNIT_FACTORS_TO_PCI_L = {
+    "pci/l": 1.0,
+    "pci l-1": 1.0,
+}
+
+
+def _normalize_text(value: str) -> str:
+    return " ".join(value.lower().replace("_", " ").split())
+
+
+def _canonical_contaminant_name(name: str) -> str:
+    normalized = _normalize_text(name)
+    for canonical, aliases in CONTAMINANT_ALIASES.items():
+        if any(alias in normalized for alias in aliases):
+            return canonical
+    return name
+
+
+def _normalize_unit(unit: str) -> str:
+    normalized = _normalize_text(unit)
+    return (
+        normalized.replace("micrograms per liter", "ug/l")
+        .replace("milligrams per liter", "mg/l")
+        .replace("nanograms per liter", "ng/l")
+        .replace("picocuries per liter", "pci/l")
+        .replace("μ", "µ")
+    )
+
+
+def _convert_value(value: float, *, source_unit: str, target_unit: str) -> float | None:
+    source = _normalize_unit(source_unit)
+    target = _normalize_unit(target_unit)
+
+    if target in UNIT_FACTORS_TO_NG_L:
+        source_factor = UNIT_FACTORS_TO_NG_L.get(source)
+        target_factor = UNIT_FACTORS_TO_NG_L.get(target)
+        if source_factor is None or target_factor is None:
+            return None
+        return value * source_factor / target_factor
+
+    if target == "pci/l":
+        factor = UNIT_FACTORS_TO_PCI_L.get(source)
+        if factor is None:
+            return None
+        return value * factor
+
+    return None
+
 
 class WaterQualityClient:
     """Fetches water quality data from federal APIs."""
@@ -157,17 +247,55 @@ class WaterQualityClient:
                         numeric_val = float(value) if value else None
                     except (ValueError, TypeError):
                         numeric_val = None
-                    results.append({
-                        "contaminant": props.get("CharacteristicName", ""),
-                        "value": numeric_val,
-                        "unit": props.get("ResultMeasure/MeasureUnitCode", ""),
-                        "date": props.get("ActivityStartDate", ""),
-                        "exceeds_limit": False,  # TODO: compare against EPA MCLs
-                    })
+                    results.append(
+                        self._annotate_contaminant_result(
+                            contaminant=props.get("CharacteristicName", ""),
+                            value=numeric_val,
+                            unit=props.get("ResultMeasure/MeasureUnitCode", ""),
+                            date=props.get("ActivityStartDate", ""),
+                        )
+                    )
                 return results
         except (httpx.HTTPError, ValueError):
             pass
         return []
+
+    def _annotate_contaminant_result(
+        self, *, contaminant: str, value: float | None, unit: str, date: str
+    ) -> dict:
+        canonical = _canonical_contaminant_name(contaminant)
+        threshold = CONTAMINANT_THRESHOLDS.get(canonical)
+
+        result = {
+            "contaminant": contaminant,
+            "canonical_contaminant": canonical,
+            "value": value,
+            "unit": unit,
+            "date": date,
+            "comparison_supported": False,
+            "exceeds_limit": False,
+            "threshold_value": threshold["value"] if threshold else None,
+            "threshold_unit": threshold["unit"] if threshold else None,
+            "threshold_basis": threshold["basis"] if threshold else None,
+            "normalized_value": None,
+            "screening_note": (
+                "Public screening threshold only; not a full regulatory compliance determination."
+                if threshold
+                else None
+            ),
+        }
+
+        if threshold is None or value is None:
+            return result
+
+        normalized = _convert_value(value, source_unit=unit, target_unit=threshold["unit"])
+        if normalized is None:
+            return result
+
+        result["comparison_supported"] = True
+        result["normalized_value"] = round(normalized, 4)
+        result["exceeds_limit"] = normalized > threshold["value"]
+        return result
 
     def _assess_pfas_risk(self, contaminants: list[dict]) -> str:
         """Assess PFAS contamination risk based on detected contaminants."""
@@ -175,6 +303,8 @@ class WaterQualityClient:
             c for c in contaminants
             if c.get("contaminant", "").upper() in ("PFOS", "PFOA", "PFAS")
         ]
+        if any(c.get("exceeds_limit") for c in pfas_found):
+            return "elevated"
         if pfas_found:
             return "detected"
         return "no_data"

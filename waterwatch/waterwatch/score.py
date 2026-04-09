@@ -90,7 +90,7 @@ class WaterScorer:
             },
             "concerns": concerns,
             "methodology": {
-                "version": "1.0",
+                "version": "v0.1",
                 "weights": WEIGHTS,
                 "note": "Score is 0-100 (higher = better water health). "
                         "Based on EPA water quality data, NOAA flood predictions, "

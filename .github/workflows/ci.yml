@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install BasinKit
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e waterwatch[dev]
+      - name: Run tests
+        run: pytest -q waterwatch/tests
+      - name: Compile toolkit and observatory scripts
+        run: python -m compileall waterwatch/waterwatch observatory/scripts
+      - name: Observatory smoke test
+        run: |
+          tmpdir="$(mktemp -d)"
+          cat > "$tmpdir/search.json" <<'JSON'
+          {
+            "region": "Lake Mead, Nevada",
+            "region_slug": "lake-mead",
+            "bbox": [-114.9, 36.0, -114.6, 36.3],
+            "date_range": ["2025-01-01", "2026-04-28"],
+            "results": [
+              {"id": "scene-1", "name": "Lake Mead scene one", "date": "2026-04-01T00:00:00Z", "cloud_cover": 4.2},
+              {"id": "scene-2", "name": "Lake Mead scene two", "date": "2026-04-08T00:00:00Z", "cloud_cover": 6.4}
+            ]
+          }
+          JSON
+          python observatory/scripts/download_imagery.py --results "$tmpdir/search.json" --output "$tmpdir/data" --mock
+          python observatory/scripts/compute_ndwi.py --input "$tmpdir/data/lake-mead/imagery-manifest.json" --output "$tmpdir/outputs"
+          python observatory/scripts/detect_water.py --input "$tmpdir/outputs/lake-mead/ndwi-manifest.json" --output "$tmpdir/outputs"
