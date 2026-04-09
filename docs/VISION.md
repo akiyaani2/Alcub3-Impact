@@ -15,7 +15,7 @@ The venture uses open data, geospatial sensing, public methodology, and selectiv
 - **Water Pulse**: a guest-first public product
 - **BasinKit**: an open-source developer layer
 - **Observatory**: a Labs proof surface
-- **Impact API**: a hosted intelligence layer for developers and institutional users
+- **Water Intelligence API**: a hosted intelligence layer for developers and institutional users
 
 ## Why This Matters
 
@@ -38,7 +38,7 @@ Usable surfaces intended to create direct value now.
 
 - Water Pulse
 - AI water footprint surface
-- Impact API
+- Water Intelligence API
 
 ### Labs
 
@@ -125,7 +125,7 @@ Current focus:
 - change detection
 - drought and flood monitoring workflows
 
-### Impact API
+### Water Intelligence API
 
 Hosted water-intelligence layer for developers, partners, and institutional users.
 

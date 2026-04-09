@@ -35,7 +35,7 @@ The goal is not to rename things constantly. The goal is to make the system clea
 ### Open-Source Developer Layer
 
 - **BasinKit**
-  - the recommended long-term public name for the toolkit
+  - the adopted public name for the toolkit
   - broader and more ownable than `WaterWatch`
   - fits a library that spans quality, scoring, satellite, drought, flood, and reporting primitives
 
@@ -49,13 +49,13 @@ The goal is not to rename things constantly. The goal is to make the system clea
 ### Hosted Developer and Institutional Layer
 
 - **Water Intelligence API**
-  - recommended long-term product name
+  - the adopted public product name
   - clearer than `Impact API`
   - more descriptive for developers, partners, and institutional users
 
 ## Transition Guidance
 
-The current repository and package paths still use `waterwatch/` and `Impact API` in some places. That is acceptable during transition.
+The current repository and package paths still use `waterwatch/` and the route path `/impact-api` in some places. That is acceptable during transition.
 
 Recommended order of migration:
 

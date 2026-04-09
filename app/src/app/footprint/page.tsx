@@ -170,7 +170,7 @@ export default function FootprintPage() {
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Link href="/impact-api" className="impact-button-secondary">
-                See Impact API
+                See Water Intelligence API
               </Link>
               <Link href="/account" className="impact-button">
                 Save reporting profile

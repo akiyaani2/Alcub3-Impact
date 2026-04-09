@@ -10,7 +10,7 @@ Examples of workloads that may eventually live here:
 
 - model-heavy inference endpoints
 - background processing and report generation
-- higher-volume hosted Impact API services
+- higher-volume hosted Water Intelligence API services
 - partner-specific integrations
 
 Until then, the public product routes live inside the app layer.

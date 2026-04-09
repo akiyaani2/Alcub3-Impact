@@ -44,7 +44,7 @@ export default function Home() {
             <div className="impact-track-grid mt-6">
               <TrackRow
                 title="Product"
-                description="Water Pulse, AI Footprint, and later the Impact API."
+                description="Water Pulse, AI Footprint, and later the Water Intelligence API."
               />
               <TrackRow
                 title="Labs"
@@ -81,7 +81,7 @@ export default function Home() {
             tag="Product"
           />
           <Card
-            title="WaterWatch"
+            title="BasinKit"
             description="The open-source developer layer: fetching, scoring, and reporting primitives that keep the venture legible and extensible."
             href="https://github.com/akiyaani2/Alcub3-Impact/tree/main/waterwatch"
             tag="Open Source"
@@ -94,7 +94,7 @@ export default function Home() {
             tag="Labs"
           />
           <Card
-            title="Impact API"
+            title="Water Intelligence API"
             description="The higher-value institutional layer: water reporting, portfolio risk, property intelligence, and partner workflows. Early access for now."
             href="/impact-api"
             tag="Product"
@@ -201,7 +201,7 @@ export default function Home() {
               desc: "The visual and remote-sensing layer for Observatory and future forecasting.",
             },
             {
-              name: "WaterWatch",
+              name: "BasinKit",
               desc: "The open-source developer layer that unifies fetching, scoring, and reporting primitives.",
             },
             {

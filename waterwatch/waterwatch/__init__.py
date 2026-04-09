@@ -1,4 +1,4 @@
-"""WaterWatch — Open-source Python library for water intelligence."""
+"""BasinKit — open-source Python library for water intelligence."""
 
 from waterwatch.core import WaterIntel
 

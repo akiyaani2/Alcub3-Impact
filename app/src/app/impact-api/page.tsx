@@ -7,16 +7,16 @@ export default function ImpactApiPage() {
       <section className="impact-hero pb-8">
         <div className="impact-hero-grid">
           <div>
-            <div className="impact-eyebrow">Product / Impact API</div>
+            <div className="impact-eyebrow">Product / Water Intelligence API</div>
             <h1 className="impact-title">
               The institutional
               <br />
               <span className="impact-title-accent">water layer.</span>
             </h1>
             <p className="impact-lead">
-              Impact API is the higher-value reporting and risk surface for ALCUB3 Impact. It is
-              where AI footprint accountability, water-risk intelligence, and partner workflows
-              begin to compound into a serious business.
+              Water Intelligence API is the higher-value reporting and risk surface for ALCUB3
+              Impact. It is where AI footprint accountability, water-risk intelligence, and
+              partner workflows begin to compound into a serious business.
             </p>
           </div>
 
@@ -84,8 +84,9 @@ export default function ImpactApiPage() {
                 Keep it early-access and sharp.
               </h3>
               <p className="mt-4 text-sm leading-7 text-zinc-400">
-                The strongest move is to frame Impact API as a clear next layer for selected partners
-                instead of pretending it is already a full-market enterprise platform.
+                The strongest move is to frame Water Intelligence API as a clear next layer for
+                selected partners instead of pretending it is already a full-market enterprise
+                platform.
               </p>
             </div>
               <div className="flex flex-wrap gap-3">
@@ -107,7 +108,7 @@ export default function ImpactApiPage() {
         <AccessRequestForm
           intent="api"
           title="Package access before you overbuild it"
-          description="Impact API should stay early-access and tightly scoped while the buyer motion hardens. Leave the preferred identity route now and use the open surfaces while the gated layer comes online."
+          description="Water Intelligence API should stay early-access and tightly scoped while the buyer motion hardens. Leave the preferred identity route now and use the open surfaces while the gated layer comes online."
         />
       </section>
     </div>

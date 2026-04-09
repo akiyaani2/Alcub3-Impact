@@ -1,8 +1,8 @@
-# WaterWatch
+# BasinKit
 
-Public naming is moving toward **BasinKit** for the toolkit and `basinkit` for the CLI. The current Python package path remains `waterwatch` during the transition.
+`BasinKit` is the public toolkit name and `basinkit` is the CLI command. The current Python package path remains `waterwatch` during the transition.
 
-WaterWatch is the open-source developer layer for ALCUB3 Impact.
+BasinKit is the open-source developer layer for ALCUB3 Impact.
 
 It is a Python toolkit for water intelligence primitives built on public data and transparent methods.
 
@@ -72,7 +72,7 @@ These are meant to make the toolkit inspectable and reproducible, not just reada
 
 ## Design Intent
 
-WaterWatch is not meant to hide public water data behind a black box. It is meant to make:
+BasinKit is not meant to hide public water data behind a black box. It is meant to make:
 
 - public-data access easier
 - scoring primitives reusable
@@ -81,13 +81,13 @@ WaterWatch is not meant to hide public water data behind a black box. It is mean
 
 ## Relationship To ALCUB3 Impact
 
-WaterWatch is the open-source trust layer.
+BasinKit is the open-source trust layer.
 
 The hosted venture layer lives in the broader ALCUB3 Impact stack:
 
 - Water Pulse
 - Observatory
-- Impact API
+- Water Intelligence API
 
 See the root [README](../README.md) and [docs](../docs/) for the broader public context.
 

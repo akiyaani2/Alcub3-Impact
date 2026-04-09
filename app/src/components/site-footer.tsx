@@ -31,7 +31,7 @@ export function SiteFooter() {
             { href: "/", label: "Water Intelligence" },
             { href: "/pulse", label: "Water Pulse" },
             { href: "/footprint", label: "AI Footprint" },
-            { href: "/impact-api", label: "Impact API" },
+            { href: "/impact-api", label: "Water Intelligence API" },
             { href: "/account", label: "Account" },
           ]}
         />

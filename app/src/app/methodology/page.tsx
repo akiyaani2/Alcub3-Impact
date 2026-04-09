@@ -155,7 +155,7 @@ export default function MethodologyPage() {
                 rel="noopener noreferrer"
                 className="impact-button"
               >
-                Review WaterWatch
+                Review BasinKit
               </a>
             </div>
           </div>

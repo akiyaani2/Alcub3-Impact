@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const shipped = [
   "Water Pulse v1 with quality, drought, and flood scoring",
-  "Open-source WaterWatch base layer for fetching and scoring water data",
+  "Open-source BasinKit base layer for fetching and scoring water data",
   "Methodology summary that separates current outputs from future layers",
   "Observatory preview as a visible Labs surface",
 ];
@@ -10,7 +10,7 @@ const shipped = [
 const inProgress = [
   "PFAS risk indicator from public geospatial priors",
   "Groundwater and infrastructure risk additions to Water Pulse",
-  "Impact API early-access packaging",
+  "Water Intelligence API early-access packaging",
   "Research-to-product evidence tier system across the full venture",
 ];
 
@@ -65,7 +65,7 @@ export default function ProgressPage() {
               description="Add the next trust-building layers without pretending they are measured when they are modeled."
             />
             <GoalCard
-              title="Package Impact API"
+              title="Package Water Intelligence API"
               description="Turn the higher-value reporting surface into a real early-access offering with clear buyer use cases."
             />
             <GoalCard

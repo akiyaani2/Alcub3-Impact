@@ -11,7 +11,7 @@ ALCUB3 Impact is the water-intelligence venture built on ALCUB3's shared platfor
 | `Water Pulse` | Beta | Consumer water lookup by zip code with public-data scoring and contextual risk surfaces |
 | `BasinKit` | Live | MIT-licensed Python toolkit for water intelligence primitives (`waterwatch/` during transition) |
 | `Observatory` | Labs | Satellite and geospatial workflows for water change and monitoring |
-| `Impact API` | Waitlist / Beta | Hosted water intelligence and reporting infrastructure |
+| `Water Intelligence API` | Waitlist / Beta | Hosted water intelligence and reporting infrastructure |
 
 ## Public vs Hosted
 
@@ -25,7 +25,7 @@ This repository is intentionally mixed:
 - **Hosted / gated**
   - saved places, alerts, and account history
   - private monitoring workflows
-  - higher-volume Impact API access
+  - higher-volume Water Intelligence API access
   - enterprise and portfolio intelligence features
 
 The goal is to keep the trust layer open while monetizing the hosted layer.
@@ -71,7 +71,7 @@ Labs-facing proof surface for water monitoring.
 - water-body change detection
 - flood / drought monitoring experiments
 
-### Impact API
+### Water Intelligence API
 
 Hosted infrastructure for developers, partners, and institutional users.
 
@@ -117,10 +117,7 @@ intel = WaterIntel()
 quality = intel.water_quality(lat=40.7128, lon=-74.0060)
 drought = intel.drought_status(lat=40.7128, lon=-74.0060)
 footprint = intel.ai_water_footprint(provider="openai", model="gpt-4", queries_per_month=10000)
-water = intel.detect_water(
-    bbox=[-74.1, 40.6, -73.9, 40.8],
-    date_range=["2025-01", "2026-01"],
-)
+pulse = intel.pulse(lat=40.7128, lon=-74.0060)
 ```
 
 ### Observatory

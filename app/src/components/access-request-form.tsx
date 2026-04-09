@@ -13,7 +13,7 @@ const intents = [
   { id: "personal", label: "Save places and history" },
   { id: "alerts", label: "Get local alerts and updates" },
   { id: "partner", label: "Partner or team access" },
-  { id: "api", label: "Impact API early access" },
+  { id: "api", label: "Water Intelligence API early access" },
 ];
 
 export function AccessRequestForm({

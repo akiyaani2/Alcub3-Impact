@@ -42,7 +42,7 @@ This roadmap is public-facing. It is meant to show what is usable now, what is e
   - satellite workflows
   - water-body change monitoring
 
-### Impact API
+### Water Intelligence API
 
 - Status: **Waitlist / Beta**
 - Role: hosted product infrastructure
@@ -109,7 +109,7 @@ The next most important additions are:
 
 - Status: **Roadmap**
 - Intended expansion:
-  - higher-volume Impact API access
+  - higher-volume Water Intelligence API access
   - reporting workflows
   - partner dashboards
 

@@ -76,7 +76,7 @@ export default function AnswersPage() {
               See progress
             </Link>
             <Link href="/impact-api" className="impact-button">
-              See Impact API
+              See Water Intelligence API
             </Link>
           </div>
         </div>

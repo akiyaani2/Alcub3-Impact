@@ -96,7 +96,7 @@ export default function PartnersPage() {
                 Request partner access
               </Link>
               <Link href="/impact-api" className="impact-button-secondary">
-                See Impact API
+                See Water Intelligence API
               </Link>
               <Link href="/progress" className="impact-button-ghost">
                 Review current progress
