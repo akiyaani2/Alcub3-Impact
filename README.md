@@ -110,7 +110,7 @@ pip install -e .
 ```
 
 ```python
-from waterwatch import WaterIntel
+from basinkit import WaterIntel
 
 intel = WaterIntel()
 
@@ -159,7 +159,8 @@ alcub3-impact/
 │   ├── src/components/     # Shared UI components
 │   └── public/             # Static assets
 ├── waterwatch/             # BasinKit toolkit package (path retained during transition)
-│   ├── waterwatch/         # Core package
+│   ├── basinkit/          # Public package alias
+│   ├── waterwatch/         # Core package / compatibility import
 │   └── tests/             # Library tests
 ├── observatory/            # Geospatial / satellite workflows
 │   ├── scripts/

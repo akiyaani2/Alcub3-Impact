@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from waterwatch import WaterIntel
+from basinkit import WaterIntel
 
 
 def main() -> None:

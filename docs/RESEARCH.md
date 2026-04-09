@@ -88,6 +88,23 @@ Current examples:
 - geospatial PFAS and groundwater work informs the next modeled risk layers
 - imputation and scoring literature informs BasinKit reliability
 
+## Research Corpus
+
+The public repo is backed by a larger structured research library than this summary shows.
+
+- 130+ curated papers across 22 domains
+- 20+ papers deep-read in full text
+- standing watches across water quality ML, smart water systems, water sustainability,
+  desalination, and satellite water monitoring
+
+Internal research canon currently lives under:
+
+- `wiki/research/raw/water-intelligence/`
+- `wiki/research/raw/alcub3-impact/`
+
+That internal corpus should inform the public roadmap, but not all of it belongs in the
+public repo until it has been translated into product, method, benchmark, or roadmap form.
+
 ## Public Research Discipline
 
 We should not surface a research result publicly as a product claim unless it has been translated into one of the following:

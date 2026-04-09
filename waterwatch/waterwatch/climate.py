@@ -40,6 +40,7 @@ class ClimateClient:
         level_info = DROUGHT_LEVELS.get(drought_data.get("level", "None"), DROUGHT_LEVELS["None"])
 
         return {
+            "evidence_tier": "measured",
             "drought_level": drought_data.get("level", "None"),
             "drought_score": level_info["level"],
             "description": level_info["description"],
@@ -77,6 +78,7 @@ class ClimateClient:
                     flood_score = max(flood_score, 30)
 
         return {
+            "evidence_tier": "estimated",
             "flood_status": flood_status,
             "flood_score": flood_score,
             "risk": self._score_to_risk(flood_score),
@@ -84,6 +86,11 @@ class ClimateClient:
             "gauge_readings": gauge_data,
             "data_source": "NOAA National Water Prediction Service",
             "location": {"lat": lat, "lon": lon},
+            "methodology": {
+                "evidence_tier": "estimated",
+                "note": "Flood status is derived from nearby NOAA gauge observations and forecast "
+                "categories. It is a public risk estimate, not a parcel-specific engineering assessment.",
+            },
         }
 
     def _get_usdm_status(self, *, lat: float, lon: float) -> dict:

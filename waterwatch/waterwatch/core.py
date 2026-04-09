@@ -74,7 +74,7 @@ class WaterIntel:
                 "score": "modeled",
                 "quality": "measured",
                 "drought": "measured",
-                "flood": "measured",
+                "flood": "estimated",
             },
             "docs": {
                 "methodology": "docs/METHODOLOGY.md",

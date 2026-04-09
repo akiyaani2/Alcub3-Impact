@@ -105,6 +105,7 @@ class FootprintCalculator:
         drinking_days = total_water_liters / 2  # 2L/day recommended
 
         return {
+            "evidence_tier": "estimated",
             "provider": provider,
             "model": model,
             "queries_per_month": queries_per_month,
@@ -121,6 +122,7 @@ class FootprintCalculator:
                 "equivalent_drinking_water_days": round(drinking_days, 1),
             },
             "methodology": {
+                "evidence_tier": "estimated",
                 "wue_l_per_kwh": wue,
                 "wue_source": wue_data["source"],
                 "energy_source": "Estimated from model architecture and published benchmarks",
@@ -155,6 +157,7 @@ class FootprintCalculator:
         water_gallons = water_liters * 0.264172
 
         return {
+            "evidence_tier": "estimated",
             "cloud_provider": cloud_provider,
             "compute_hours_monthly": compute_hours_monthly,
             "gpu_type": gpu_type,
@@ -163,6 +166,7 @@ class FootprintCalculator:
             "water_gallons_monthly": round(water_gallons, 2),
             "offset_cost_usd_monthly": round(water_gallons / 1000, 2),
             "methodology": {
+                "evidence_tier": "estimated",
                 "gpu_watts": watts,
                 "wue_l_per_kwh": wue_data["wue_l_per_kwh"],
                 "wue_source": wue_data["source"],

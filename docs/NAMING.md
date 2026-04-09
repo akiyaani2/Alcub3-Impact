@@ -55,15 +55,16 @@ The goal is not to rename things constantly. The goal is to make the system clea
 
 ## Transition Guidance
 
-The current repository and package paths still use `waterwatch/` and the route path `/impact-api` in some places. That is acceptable during transition.
+The repository root still uses `waterwatch/` as the package directory, but the public package
+and CLI should converge on `BasinKit`.
 
-Recommended order of migration:
+Current transition posture:
 
-1. Keep the current code paths stable
-2. Introduce `BasinKit` as the public toolkit name
-3. Expose `basinkit` as the CLI command
-4. Rename external docs and site copy before renaming import paths
-5. Only rename the Python import path when the package surface is stable enough to justify the breaking change
+1. `BasinKit` is the public toolkit name
+2. `basinkit` is the canonical CLI command
+3. `basinkit` should be the public Python package import going forward
+4. `waterwatch` remains as a compatibility import during transition
+5. site copy, docs, and examples should prefer `BasinKit` / `basinkit`
 
 ## What Should Stay Stable
 

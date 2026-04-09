@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 
-from waterwatch.benchmarks import run_reference_benchmarks
+from basinkit.benchmarks import run_reference_benchmarks
 
 
 def main() -> None:

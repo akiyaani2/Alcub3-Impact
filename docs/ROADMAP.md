@@ -86,6 +86,34 @@ The next most important additions are:
 - Why it matters:
   - strong bridge from consumer value to institutional value
 
+## Research Tracks
+
+These are active research directions, not product promises.
+
+### Water Security Risk Index
+
+- Status: **Research**
+- Lane: Labs + Research
+- Why it matters:
+  - extends Water Pulse from current-state visibility into broader water security context
+  - combines quality, drought, flood, groundwater, infrastructure, and climate-sensitive risk
+
+### Desalination Siting Intelligence
+
+- Status: **Research**
+- Lane: Labs + Research
+- Why it matters:
+  - fits the software-only intelligence layer we can build without becoming a hardware company
+  - connects water stress, coastline access, energy availability, and population-growth context
+
+### Non-Revenue Water Estimation
+
+- Status: **Research**
+- Lane: Labs + Research
+- Why it matters:
+  - gives utilities a high-value operational problem before new water supply build-out
+  - provides a credible bridge from public data to institutional water-loss intelligence
+
 ## Later
 
 ### Property and Portfolio Water Risk

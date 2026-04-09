@@ -1,6 +1,6 @@
 # BasinKit
 
-`BasinKit` is the public toolkit name and `basinkit` is the CLI command. The current Python package path remains `waterwatch` during the transition.
+`BasinKit` is the public toolkit name, `basinkit` is the CLI command, and `basinkit` is now the preferred Python import. The `waterwatch` path remains available as a compatibility import during transition.
 
 BasinKit is the open-source developer layer for ALCUB3 Impact.
 
@@ -27,7 +27,7 @@ pip install -e .
 ## Example
 
 ```python
-from waterwatch import WaterIntel
+from basinkit import WaterIntel
 
 intel = WaterIntel()
 
@@ -64,6 +64,7 @@ The toolkit now includes:
 - `examples/reference_benchmarks.py`
 - `examples/company_footprint.py`
 - `waterwatch/data/reference_locations.json`
+- `basinkit/` compatibility package
 - `benchmarks/reference-locations-2026-04-09.md`
 - `notebooks/quickstart.ipynb`
 - `notebooks/reference_locations.ipynb`

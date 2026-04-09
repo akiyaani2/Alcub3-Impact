@@ -142,6 +142,7 @@ class WaterQualityClient:
             quality_score = max(10, 60 - violation_count * 10 - len(contaminant_flags) * 5)
 
         return {
+            "evidence_tier": "measured",
             "quality_score": quality_score,
             "quality_grade": quality_grade,
             "monitoring_stations": len(stations),
@@ -152,6 +153,12 @@ class WaterQualityClient:
             "pfas_risk": self._assess_pfas_risk(contaminants),
             "data_sources": ["USGS Water Quality Portal", "EPA ECHO"],
             "location": {"lat": lat, "lon": lon, "radius_miles": radius_miles},
+            "methodology": {
+                "evidence_tier": "measured",
+                "comparison_tier": "estimated",
+                "note": "Quality inputs are public measured records. Threshold screening is a "
+                "derived estimate for public triage, not a full compliance determination.",
+            },
         }
 
     def _find_stations(self, *, lat: float, lon: float, radius_miles: float) -> list[dict]:

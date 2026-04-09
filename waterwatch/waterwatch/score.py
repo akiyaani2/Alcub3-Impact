@@ -66,6 +66,7 @@ class WaterScorer:
             })
 
         return {
+            "evidence_tier": "estimated",
             "overall_score": composite,
             "grade": grade,
             "grade_label": grade_label,
@@ -91,6 +92,7 @@ class WaterScorer:
             "concerns": concerns,
             "methodology": {
                 "version": "v0.1",
+                "evidence_tier": "estimated",
                 "weights": WEIGHTS,
                 "note": "Score is 0-100 (higher = better water health). "
                         "Based on EPA water quality data, NOAA flood predictions, "

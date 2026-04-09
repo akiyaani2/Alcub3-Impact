@@ -52,6 +52,9 @@ it should be traceable to at least one source family here.
 - WRI Aqueduct
   - basin and water-stress context
   - https://www.wri.org/aqueduct
+- WRI Aqueduct 4.0
+  - watershed-scale baseline and projected water-stress context
+  - https://www.wri.org/aqueduct/data
 
 ## AI Water Footprint References
 
@@ -95,6 +98,35 @@ These source families inform the Observatory and future modeled layers:
 - optical and radar fusion
 - segmentation for surface-water detection
 - water-access prediction from imagery
+
+## Emerging Validation and Research Inputs
+
+These sources are relevant to the next public modules, but should remain clearly labeled as
+validation or research inputs until they are productized.
+
+### PFAS and Contamination Validation
+
+- Environmental Working Group PFAS map/database
+  - public contamination-site context and validation support
+  - https://www.ewg.org/interactive-maps/pfas_contamination/
+
+### Groundwater and Land Surface Hydrology
+
+- NASA GLDAS
+  - global land data assimilation and groundwater-adjacent hydrology context
+  - https://ldas.gsfc.nasa.gov/gldas
+
+### Drought Modeling Benchmarks
+
+- DroughtSet
+  - benchmark dataset for drought prediction and modeling work
+  - https://github.com/maoyangli95/DroughtED
+
+### Water Efficiency and Utility Operations
+
+- OSF water efficiency datasets
+  - city-scale and hourly water-use-efficiency validation inputs
+  - https://osf.io/
 
 Canonical public reporting should eventually promote the strongest of these into benchmark notes or research summaries with clearer versioning.
 
