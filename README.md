@@ -1,32 +1,108 @@
 # ALCUB3 Impact
 
-Open-source AI water intelligence platform.
+AI-native water intelligence built on public data, open tools, and transparent methods.
 
-**Water Pulse** | **WaterWatch** | **Observatory** | **Impact API**
+ALCUB3 Impact is the water-intelligence venture built on ALCUB3's shared platform rails. This repository contains the public product surface, the open-source developer layer, and the observatory workflows that make the system inspectable.
 
----
+## What This Repo Includes
 
-## What This Is
+| Surface | Status | What it does |
+| --- | --- | --- |
+| `Water Pulse` | Beta | Consumer water lookup by zip code with public-data scoring and contextual risk surfaces |
+| `WaterWatch` | Live | MIT-licensed Python toolkit for water intelligence primitives |
+| `Observatory` | Labs | Satellite and geospatial workflows for water change and monitoring |
+| `Impact API` | Waitlist / Beta | Hosted water intelligence and reporting infrastructure |
 
-ALCUB3 Impact builds water intelligence products for people, organizations, and public-interest partners. We combine free public water data with open-source AI to make water information accessible, predictive, and actionable.
+## Public vs Hosted
 
-- **Water Pulse** — Enter your zip code, get your water health score. Quality, drought risk, flood risk, AI water footprint.
-- **WaterWatch** — Open-source Python library for water intelligence. Unified API across USGS, NOAA, EPA, Sentinel-2, and more.
-- **Observatory** — Satellite water monitoring. Before/after change detection, flood mapping, drought progression.
-- **Impact API** — Enterprise water footprint reporting and offset verification.
+This repository is intentionally mixed:
+
+- **Open-source / public**
+  - WaterWatch library
+  - public methodology
+  - observatory scripts and example outputs
+  - guest-first web experience
+- **Hosted / gated**
+  - saved places, alerts, and account history
+  - private monitoring workflows
+  - higher-volume Impact API access
+  - enterprise and portfolio intelligence features
+
+The goal is to keep the trust layer open while monetizing the hosted layer.
+
+## Product Model
+
+ALCUB3 Impact separates three lanes publicly:
+
+- **Product**: usable surfaces people can act on now
+- **Labs**: experimental sensing, forecasting, and observatory work
+- **Research**: methods, caveats, and evidence that we are prepared to defend publicly
+
+That distinction is part of the trust model.
+
+## Current Launch Stack
+
+### Water Pulse
+
+Guest-first consumer entry point for local water visibility.
+
+- Zip code lookup
+- Water quality, drought, and flood context
+- product-facing methodology and answers pages
+- no sign-in required for first value
+
+Planned layers include PFAS risk, groundwater health, and infrastructure risk. Those should be presented as modeled or estimated outputs, not as direct diagnosis.
+
+### WaterWatch
+
+MIT-licensed Python toolkit for fetching, scoring, and reporting water intelligence.
+
+- public-data connectors
+- scoring primitives
+- reporting helpers
+- geospatial and satellite hooks
+
+### Observatory
+
+Labs-facing proof surface for water monitoring.
+
+- regional previews
+- geospatial workflows
+- water-body change detection
+- flood / drought monitoring experiments
+
+### Impact API
+
+Hosted infrastructure for developers, partners, and institutional users.
+
+- water reporting
+- risk scoring
+- monitoring workflows
+- partner and portfolio surfaces
 
 ## Quick Start
 
-### Water Pulse (Web App)
+### Water Pulse app
 
 ```bash
 cd app
 npm install
 npm run dev
-# → http://localhost:3000
 ```
 
-### WaterWatch (Python Library)
+Open `http://localhost:3000`.
+
+Useful routes:
+
+- `/` — Water Intelligence homepage
+- `/pulse` — Water Pulse
+- `/footprint` — AI water footprint
+- `/observatory` — Labs surface
+- `/methodology` — product-facing trust layer
+- `/answers` — public product FAQ / explanation
+- `/account` — progressive access and gating model
+
+### WaterWatch
 
 ```bash
 cd waterwatch
@@ -38,82 +114,87 @@ from waterwatch import WaterIntel
 
 intel = WaterIntel()
 
-# Water quality for a location
 quality = intel.water_quality(lat=40.7128, lon=-74.0060)
-
-# Drought conditions
 drought = intel.drought_status(lat=40.7128, lon=-74.0060)
-
-# AI water footprint estimate
 footprint = intel.ai_water_footprint(provider="openai", model="gpt-4", queries_per_month=10000)
-
-# Satellite water detection
-water = intel.detect_water(bbox=[-74.1, 40.6, -73.9, 40.8], date_range=["2025-01", "2026-01"])
+water = intel.detect_water(
+    bbox=[-74.1, 40.6, -73.9, 40.8],
+    date_range=["2025-01", "2026-01"],
+)
 ```
 
 ### Observatory
 
 ```bash
 cd observatory
-python scripts/process_region.py --region gaza --start 2025-01 --end 2026-04
+python scripts/process_region.py --region lake_mead --start 2025-01 --end 2026-04
 ```
 
-## Data Sources (All Free)
+## Evidence Tiers
 
-| Source | What | Access |
-|--------|------|--------|
-| USGS Water Data | Real-time streamflow, water quality | api.waterdata.usgs.gov |
-| EPA Water Quality Portal | 430M+ contamination records | waterqualitydata.us |
-| NOAA NWPS | Flood predictions, streamflow forecasts | water.noaa.gov |
-| Drought.gov | Drought indices, daily updates | drought.gov |
-| Sentinel-2 (Copernicus) | 10m satellite imagery, 5-day revisit | dataspace.copernicus.eu |
-| WHO/UNICEF JMP | Global water access statistics | washdata.org |
+Every public-facing claim should be understood as one of:
 
-## Tech Stack
+- **Measured**: direct public observations, gauges, or regulatory records
+- **Estimated**: defensible approximations where direct facility-level data is unavailable
+- **Modeled**: probabilistic inference built from validated signals and correlates
+- **Roadmap**: active direction, not yet an operational claim
 
-- **Frontend:** Next.js 15 + Tailwind CSS (Vercel)
-- **Python Library:** WaterWatch (pip installable)
-- **Satellite Processing:** SAM 3 + segment-geospatial + WaterDetect
-- **APIs:** USGS, NOAA, EPA, Copernicus (all free)
-- **Database:** Supabase (free tier)
+See [docs/METHODOLOGY.md](docs/METHODOLOGY.md).
+
+## Data Sources
+
+Core public sources currently used or targeted:
+
+- USGS Water Data
+- EPA ECHO / drinking water records
+- NOAA / flood and drought feeds
+- Drought.gov / US Drought Monitor
+- Sentinel-1 / Sentinel-2 imagery
+- WHO / UNICEF JMP
+- WRI Aqueduct (for stress-weighted impact work)
 
 ## Architecture
 
-```
+```text
 alcub3-impact/
-├── app/                    # Next.js 15 web application
-│   ├── src/
-│   │   ├── app/            # App router pages
-│   │   ├── components/     # UI components
-│   │   ├── lib/            # Data fetching + scoring
-│   │   └── styles/         # Tailwind config
-│   └── package.json
-├── waterwatch/             # Python library (pip installable)
-│   ├── waterwatch/
-│   │   ├── quality.py      # USGS/EPA water quality
-│   │   ├── climate.py      # NOAA flood/drought
-│   │   ├── satellite.py    # Sentinel-2 + SAM 3
-│   │   ├── footprint.py    # AI water footprint
-│   │   └── score.py        # Composite scoring
-│   ├── tests/
-│   ├── notebooks/
-│   └── pyproject.toml
-├── observatory/            # Satellite processing pipeline
+├── app/                    # Next.js app for public product surfaces
+│   ├── src/app/            # Routes and API handlers
+│   ├── src/components/     # Shared UI components
+│   └── public/             # Static assets
+├── waterwatch/             # MIT Python toolkit
+│   ├── waterwatch/         # Core package
+│   └── tests/             # Library tests
+├── observatory/            # Geospatial / satellite workflows
 │   ├── scripts/
-│   ├── data/               # Downloaded imagery (gitignored)
-│   └── outputs/            # Processed maps (committed)
-├── api/                    # FastAPI for ML-heavy endpoints
-└── docs/
+│   ├── data/               # Downloaded inputs (gitignored)
+│   └── outputs/            # Example outputs
+├── api/                    # Reserved for heavier hosted endpoints
+└── docs/                   # Public vision, methods, roadmap, and contribution docs
 ```
 
-## License
+## Documentation
 
-MIT
+- [Vision](docs/VISION.md)
+- [Methodology](docs/METHODOLOGY.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Research](docs/RESEARCH.md)
+- [Contributing](docs/CONTRIBUTING.md)
+- [Security](docs/SECURITY.md)
 
 ## Contributing
 
-This is an open-source project. Contributions welcome. See [CONTRIBUTING.md](docs/CONTRIBUTING.md).
+Contributions are welcome, especially in:
 
----
+- public-data connectors
+- scoring and reporting utilities
+- observatory workflows
+- documentation and methodology clarity
+- test coverage
 
-Built by [ALCUB3](https://alcub3.com) | Powered by open data and open-source AI
+Start with [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+Built by [ALCUB3](https://alcub3.com).

@@ -5,13 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "waterwatch"
 version = "0.1.0"
-description = "Open-source Python library for water intelligence"
+description = "Open-source toolkit for water intelligence primitives and public-data connectors"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
     {name = "ALCUB3 Impact", email = "impact@alcub3.com"},
 ]
+keywords = ["water", "hydrology", "geospatial", "satellite", "environmental-data", "ai"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
@@ -25,6 +26,11 @@ dependencies = [
     "pydantic>=2.0",
     "geojson>=3.0",
 ]
+
+[project.urls]
+Homepage = "https://impact.alcub3.com"
+Repository = "https://github.com/akiyaani2/Alcub3-Impact"
+Documentation = "https://github.com/akiyaani2/Alcub3-Impact/tree/main/docs"
 
 [project.optional-dependencies]
 satellite = [

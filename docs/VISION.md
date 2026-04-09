@@ -1,83 +1,190 @@
-# ALCUB3 Impact — Vision
+# ALCUB3 Impact Vision
 
-**AI-native water intelligence for people, organizations, and the planet.**
+ALCUB3 Impact makes water legible.
 
----
+It is the water-intelligence venture built on ALCUB3's shared platform rails. The goal is not to publish another dashboard full of raw environmental data. The goal is to turn fragmented public water information into products people can use, methods people can inspect, and infrastructure partners can build on.
 
-## The Problem
+## Thesis
 
-AI is consuming water at an unprecedented scale. Every query to GPT-4, every Claude conversation, every Gemini search requires data center cooling — and that cooling requires water. Google's data centers consumed 5.6 billion gallons in 2023. Microsoft's water usage surged 34% in a single year. The industry is on track to consume more water than some small nations by 2030.
+Water intelligence is still fragmented across agencies, sensors, utility records, satellite imagery, and regulatory systems. Most people cannot answer basic questions about local water quality, drought exposure, flood risk, or the physical cost of AI workloads without crossing multiple tools and opaque datasets.
 
-Meanwhile, 785 million people lack access to clean drinking water. The irony is sharp: the technology that could help solve the water crisis is making it worse, and nobody is measuring it.
+ALCUB3 Impact exists to close that gap.
 
-## What We're Building
+The venture uses open data, geospatial sensing, public methodology, and selective model infrastructure to create a water-intelligence stack with four visible surfaces:
 
-ALCUB3 Impact is an open-source AI water intelligence platform. We make water data visible, predictive, and actionable — for consumers who want to understand their local water health, for businesses who need to measure and offset their AI water footprint, and for governments and NGOs who need intelligence to protect water access.
-
-### Products
-
-**Water Pulse** — Enter your zip code. Get your water health score. We pull real-time data from EPA, USGS, NOAA, and the US Drought Monitor to compute a composite score across water quality, drought risk, and flood risk. 430 million contamination records. 66+ live streamflow gauges per metro area. Updated continuously from federal data sources. Free, no signup required.
-
-**WaterWatch** — Open-source Python library (MIT license) for water intelligence. Unified API across every major free water data source — USGS, EPA, NOAA, Sentinel-2 satellite imagery. Water quality monitoring, drought tracking, flood prediction, AI water footprint calculation, and satellite-based water body detection. Installable via pip, documented with Jupyter notebooks, designed for researchers, NGOs, civic hackers, and municipalities.
-
-**Observatory** — Satellite water monitoring powered by free Sentinel-2 imagery (10m resolution, 5-day revisit, no commercial restrictions) and Meta's SAM 3 (Apache 2.0). Before/after change detection for water bodies worldwide. Flood expansion tracking. Drought progression visualization. Five initial regions: Lake Mead, Gaza Aquifer, Lake Chad, Central Valley, and the Aral Sea.
-
-**Impact API** — Enterprise water footprint reporting. Companies send compute metadata (provider, model, GPU hours), receive water impact reports with offset recommendations. Built on published Water Usage Effectiveness (WUE) data from Google, Microsoft, Meta, and AWS sustainability reports. Powers embeddable "X gallons offset" badges. Subscription tiers for enterprise ESG reporting and EU CSRD water disclosure compliance.
-
-### Roadmap
-
-**Phase 1 — Launch (June 2026):** Water Pulse consumer app, WaterWatch open-source library, Observatory preview, Impact API waitlist, donation flow via charity: water partnership.
-
-**Phase 2 — Intelligence (Q3 2026):** NOAA flood/drought predictions integrated into Water Pulse. SAM 3 satellite segmentation in Observatory. Impact API opens to early-access customers. Newsletter with monthly local water intelligence.
-
-**Phase 3 — Prediction (Q4 2026):** NVIDIA Earth-2 climate models for 60-day flood and drought forecasting. Enterprise water risk reporting. Satellite-verified impact tracking for funded projects. Public impact dashboard with cumulative outcomes.
-
-**Phase 4 — Climate Resilience (2027 H1):** Standalone municipal flood/drought prediction product. Digital twin prototypes using NVIDIA PhysicsNeMo. Blockchain-verified water credit marketplace. Integration with open-source sensor networks (Monitor My Watershed, KnowFlow, ESP32).
-
-**Phase 5 — Platform (2027 H2+):** AquaOS field-deployable water management system. Global Water Index (real-time, like AQI but for water). Water credit exchange marketplace. NOAA-scale partnership with NVIDIA for Earth Observations ecosystem.
+- **Water Pulse**: a guest-first public product
+- **WaterWatch**: an open-source developer layer
+- **Observatory**: a Labs proof surface
+- **Impact API**: a hosted intelligence layer for developers and institutional users
 
 ## Why This Matters
 
-The AI water footprint is an emerging blind spot. EU CSRD now mandates water disclosure for European corporations. SEC climate rules increasingly include water as material risk. The AI in Water Management market is projected to reach $6.2 billion by 2033 (19.3% CAGR). And nobody has built the consumer-facing, AI-native, open-source intelligence layer for water.
+Water is a real-world constraint that is becoming easier to measure and more important to act on.
 
-**Watershed** ($1.8B valuation) proved the model for carbon — enterprise accounting, offset marketplace, regulatory compliance. They've expanded into water, but as one module of a broad sustainability platform. ALCUB3 Impact goes deeper: purpose-built water intelligence with satellite verification, AI-native methodology, and open-source tooling. Consumer-first, enterprise-second.
+- Public water-quality, drought, flood, and geospatial data is increasingly available
+- Satellite and geospatial tooling now make remote monitoring practical at product scale
+- AI workloads create real physical demand on water systems
+- Local water risk is becoming more relevant to households, property decisions, infrastructure planning, and reporting workflows
 
-## The Open-Source Bet
+The opportunity is not just measurement. It is interpretation.
 
-The core intelligence library (WaterWatch) is MIT-licensed. The scoring methodology is fully transparent and published. The data sources are all free and public. This is intentional:
+## Product, Labs, Research
 
-- **Credibility** — an open-source project with transparent methodology earns trust that a proprietary SaaS cannot
-- **Community** — environmental researchers, civic hackers, and NGOs will contribute, extending coverage and validation
-- **Ecosystem** — WaterWatch becomes the standard library for water data, like pandas for data science
-- **Revenue** — monetization comes from the hosted platform, enterprise features, and API access, not from locking up public data
+ALCUB3 Impact is organized publicly around three lanes:
 
-## Technology
+### Product
 
-Built on free public data (USGS, EPA, NOAA, Sentinel-2, WHO/UNICEF) and open-source AI (Meta SAM 3, NASA/IBM Prithvi-EO, NVIDIA Earth-2, FourCastNet). Runs on consumer hardware (Apple Silicon M4 Max) for development, scales to cloud GPU via NVIDIA Inception credits for production inference.
+Usable surfaces intended to create direct value now.
 
-**No satellite subscriptions. No proprietary data. No API keys required for core functionality.** Total infrastructure cost at launch: ~$12 (one domain).
+- Water Pulse
+- AI water footprint surface
+- Impact API
 
-## Competitive Position
+### Labs
 
-No existing company combines AI-native water intelligence + consumer product + open-source tooling + satellite verification + offset monetization. Adjacent competitors serve different markets: Watershed (enterprise carbon), KETOS (utility hardware), Terrapass (carbon credits), HydroPoint (irrigation management). The consumer water intelligence space is empty.
+Experimental or proof-oriented surfaces that help people inspect what is possible without confusing experimentation for production.
 
-## Revenue Model
+- Observatory
+- forecasting previews
+- sensing and geospatial workflow experiments
 
-- **Free:** Water Pulse (consumer score), WaterWatch (open-source library), Observatory (satellite previews)
-- **Pro ($29/mo):** Impact API (100 calls/mo), monthly water intelligence reports, alert notifications
-- **Enterprise (custom):** Unlimited API, ESG reporting automation, EU CSRD compliance, white-label dashboards, offset certificates
-- **Later:** Water credit marketplace transaction fees, municipal prediction service subscriptions
+### Research
 
-## What We Need
+Methods, benchmarks, caveats, and evidence that we are prepared to defend publicly.
 
-- **NVIDIA Inception** — compute credits for Earth-2 climate prediction at scale
-- **Imagine H2O** — water industry credibility, mentorship, and pilot partnerships
-- **NSF SBIR Phase I** — $275K non-dilutive funding for "AI environmental water monitoring"
-- **charity: water partnership** — donation flow and impact verification infrastructure
-- **Community** — open-source contributors for WaterWatch library expansion
+- methodology summaries
+- public answers and benchmark notes
+- product-facing evidence tiers
 
----
+Keeping those lanes distinct is part of the trust model.
 
-*ALCUB3 Impact builds water intelligence products for people, organizations, and public-interest partners. Consumer first. Enterprise second. Open source always.*
+## Core Principles
 
-*Founded June 24, 2026.*
+### 1. Public-first trust
+
+Users should be able to inspect how scores are formed, what data is being used, and what type of claim they are looking at.
+
+### 2. Guest-first product use
+
+People should get first value before hitting a login wall. Accounts are for continuity, alerts, history, collaboration, and private workflows, not for basic access.
+
+### 3. Open substrate, hosted leverage
+
+The trust layer can be open while the highest-value workflows remain hosted.
+
+- public methodology
+- open-source toolkit
+- hosted monitoring
+- alerts, history, and team workflows
+- enterprise and portfolio intelligence
+
+### 4. Evidence-tier discipline
+
+Every public claim should be labeled internally and, where appropriate, publicly as:
+
+- measured
+- estimated
+- modeled
+- roadmap
+
+### 5. Water-native, not generic ESG
+
+Impact is not a broad sustainability wrapper. It is a water-intelligence venture with its own product logic and buyer motion.
+
+## Current Public Surfaces
+
+### Water Pulse
+
+Consumer-facing water visibility by zip code.
+
+Current focus:
+
+- local water score
+- quality, drought, and flood context
+- public methodology
+- accessible product interface
+
+### WaterWatch
+
+MIT-licensed Python toolkit for water intelligence primitives.
+
+Current focus:
+
+- public-data connectors
+- scoring utilities
+- reporting helpers
+- satellite and geospatial hooks
+
+### Observatory
+
+Labs-facing proof surface for water monitoring.
+
+Current focus:
+
+- regional previews
+- change detection
+- drought and flood monitoring workflows
+
+### Impact API
+
+Hosted water-intelligence layer for developers, partners, and institutional users.
+
+Current focus:
+
+- reporting
+- risk scoring
+- monitoring infrastructure
+- partner and portfolio use cases
+
+## What Comes Next
+
+The roadmap is driven by the strongest research-backed next layers:
+
+- PFAS risk indicators
+- groundwater health
+- infrastructure risk
+- property and portfolio water risk
+
+These should be introduced carefully and explicitly as measured, estimated, or modeled surfaces, not marketed as direct diagnosis when they are not.
+
+## Relationship To ALCUB3
+
+ALCUB3 Impact is not the same thing as the core ALCUB3 platform.
+
+- **ALCUB3** builds governed infrastructure for autonomous work
+- **ALCUB3 Impact** is a water-intelligence venture built on shared rails from that same platform
+
+The venture borrows what should be shared:
+
+- memory systems
+- orchestration
+- governance rails
+- observability
+- publishing and research workflows
+- model infrastructure
+
+But it remains a distinct public story, product surface, and commercial motion.
+
+## This Repository
+
+This repository is the public operating surface for the venture.
+
+It should feel like:
+
+- a serious open-source water-intelligence project
+- with a real public product attached
+- and a credible hosted business around it
+
+It should not feel like:
+
+- a pitch deck in markdown
+- a grant application
+- a private fundraising memo
+- a speculative manifesto
+
+For public methods, roadmap, and contribution guidance, see:
+
+- [Methodology](METHODOLOGY.md)
+- [Roadmap](ROADMAP.md)
+- [Research](RESEARCH.md)
+- [Contributing](CONTRIBUTING.md)

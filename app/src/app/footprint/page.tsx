@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { AccessLadder } from "@/components/access-ladder";
 
 const PROVIDERS = [
   { id: "openai", label: "OpenAI", models: ["gpt-4", "gpt-4o", "gpt-3.5-turbo"] },
@@ -52,112 +54,151 @@ export default function FootprintPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold mb-2">AI Water Footprint Calculator</h1>
-        <p className="text-zinc-400">
-          How much water does your AI usage consume? Find out.
-        </p>
-      </div>
-
-      {/* Calculator */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 space-y-6 mb-8">
-        {/* Provider */}
-        <div>
-          <label className="block text-sm text-zinc-400 mb-2">AI Provider</label>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-            {PROVIDERS.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => {
-                  setProvider(p.id);
-                  setModel(p.models[0]);
-                }}
-                className={`px-3 py-2 text-sm rounded-lg border transition-colors ${
-                  provider === p.id
-                    ? "border-water bg-water/10 text-water"
-                    : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
-                }`}
-              >
-                {p.label}
-              </button>
-            ))}
+    <div className="impact-page max-w-6xl">
+      <section className="impact-hero pb-8">
+        <div className="impact-hero-grid">
+          <div>
+            <div className="impact-eyebrow">Product / AI Footprint</div>
+            <h1 className="impact-title">
+              Account for the
+              <br />
+              <span className="impact-title-accent">water cost of AI.</span>
+            </h1>
+            <p className="impact-lead">
+              This surface is a product wedge into a bigger reporting layer. Start with a defensible
+              estimate, publish the assumptions, and evolve toward stress-weighted and portfolio-grade
+              water intelligence for institutions.
+            </p>
           </div>
-        </div>
 
-        {/* Model */}
-        <div>
-          <label className="block text-sm text-zinc-400 mb-2">Model</label>
-          <div className="flex gap-2 flex-wrap">
-            {currentModels.map((m) => (
-              <button
-                key={m}
-                onClick={() => setModel(m)}
-                className={`px-3 py-1.5 text-sm font-mono rounded-lg border transition-colors ${
-                  model === m
-                    ? "border-water bg-water/10 text-water"
-                    : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
-                }`}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Queries slider */}
-        <div>
-          <label className="block text-sm text-zinc-400 mb-2">
-            Queries per month:{" "}
-            <span className="text-zinc-200 font-mono">
-              {queries.toLocaleString()}
-            </span>
-          </label>
-          <input
-            type="range"
-            min={100}
-            max={1000000}
-            step={100}
-            value={queries}
-            onChange={(e) => setQueries(parseInt(e.target.value))}
-            className="w-full accent-water"
-          />
-          <div className="flex justify-between text-xs text-zinc-500 mt-1">
-            <span>100</span>
-            <span>10K</span>
-            <span>100K</span>
-            <span>1M</span>
-          </div>
-        </div>
-
-        <button
-          onClick={calculate}
-          disabled={loading}
-          className="w-full py-3 bg-water hover:bg-water-dark disabled:opacity-50 text-white font-medium rounded-lg transition-colors"
-        >
-          {loading ? "Calculating..." : "Calculate Water Footprint"}
-        </button>
-      </div>
-
-      {/* Results */}
-      {result && (
-        <div className="space-y-6 animate-in fade-in duration-500">
-          {/* Big number */}
-          <div className="text-center py-8">
-            <div className="text-5xl font-bold text-water mb-1">
-              {result.water_gallons_monthly < 1
-                ? result.water_liters_monthly.toFixed(1) + " L"
-                : result.water_gallons_monthly.toFixed(1) + " gal"}
+          <div className="impact-panel">
+            <div className="impact-mini-label">How to read this</div>
+            <div className="mt-5 space-y-3 text-sm leading-7 text-zinc-400">
+              <p>
+                Today&apos;s calculator is an <strong className="text-zinc-200">estimated</strong> footprint
+                based on workload, model family, and published WUE assumptions.
+              </p>
+              <p>
+                The direction is toward <strong className="text-zinc-200">stress-weighted</strong> impact,
+                Scope 1 + Scope 2 accounting, and reporting surfaces institutions can actually use.
+              </p>
             </div>
-            <div className="text-zinc-400">per month</div>
-            <div className="text-sm text-zinc-500 mt-2">
+          </div>
+        </div>
+      </section>
+
+      <section className="impact-grid-2">
+        <div className="impact-panel space-y-6">
+          <div>
+            <label className="mb-2 block text-sm text-zinc-400">AI Provider</label>
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+              {PROVIDERS.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => {
+                    setProvider(p.id);
+                    setModel(p.models[0]);
+                  }}
+                  className={`rounded-2xl border px-3 py-2 text-sm transition-colors ${
+                    provider === p.id
+                      ? "border-water/40 bg-water/12 text-water"
+                      : "border-white/10 text-zinc-400 hover:border-white/20"
+                  }`}
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm text-zinc-400">Model</label>
+            <div className="flex flex-wrap gap-2">
+              {currentModels.map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setModel(m)}
+                  className={`rounded-full border px-3 py-1.5 font-mono text-sm transition-colors ${
+                    model === m
+                      ? "border-water/40 bg-water/12 text-water"
+                      : "border-white/10 text-zinc-400 hover:border-white/20"
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm text-zinc-400">
+              Queries per month:{" "}
+              <span className="font-mono text-zinc-200">{queries.toLocaleString()}</span>
+            </label>
+            <input
+              type="range"
+              min={100}
+              max={1000000}
+              step={100}
+              value={queries}
+              onChange={(e) => setQueries(parseInt(e.target.value))}
+              className="w-full accent-water"
+            />
+            <div className="mt-1 flex justify-between text-xs text-zinc-500">
+              <span>100</span>
+              <span>10K</span>
+              <span>100K</span>
+              <span>1M</span>
+            </div>
+          </div>
+
+          <button onClick={calculate} disabled={loading} className="impact-button w-full">
+            {loading ? "Calculating..." : "Calculate Water Footprint"}
+          </button>
+        </div>
+
+        <div className="impact-panel">
+          <div className="impact-mini-label">Why this matters</div>
+          <div className="mt-5 space-y-4 text-sm leading-7 text-zinc-400">
+            <p>
+              Raw liters are not the whole story. The real commercial opportunity is water impact
+              that reflects region, infrastructure, and eventually stress-weighted context.
+            </p>
+            <p>
+              This calculator is the public-facing edge of a larger reporting product that can later
+              serve enterprise AI disclosures, procurement, and portfolio comparisons.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/impact-api" className="impact-button-secondary">
+                See Impact API
+              </Link>
+              <Link href="/account" className="impact-button">
+                Save reporting profile
+              </Link>
+              <Link href="/methodology" className="impact-button-ghost">
+                Read methodology
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {result && (
+        <section className="impact-section space-y-6">
+          <div className="py-4 text-center">
+            <div className="text-6xl font-bold text-water">
+              {result.water_gallons_monthly < 1
+                ? `${result.water_liters_monthly.toFixed(1)} L`
+                : `${result.water_gallons_monthly.toFixed(1)} gal`}
+            </div>
+            <div className="mt-1 text-zinc-400">per month</div>
+            <div className="mt-2 text-sm text-zinc-500">
               {result.water_liters_annual.toFixed(0)} liters /{" "}
               {result.water_gallons_annual.toFixed(0)} gallons per year
             </div>
           </div>
 
-          {/* Context */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="impact-grid-2">
             <StatCard
               value={result.context.equivalent_showers.toString()}
               label="showers equivalent"
@@ -170,48 +211,56 @@ export default function FootprintPage() {
             />
             <StatCard
               value={`$${result.offset_cost_usd_monthly.toFixed(2)}`}
-              label="to offset"
+              label="offset proxy"
               sublabel="per month"
             />
             <StatCard
               value={`${result.methodology.wue_l_per_kwh} L/kWh`}
-              label="water usage effectiveness"
+              label="WUE assumption"
               sublabel={result.methodology.source}
             />
           </div>
 
-          {/* Methodology note */}
-          <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-xs text-zinc-500">
-            <p>
-              Estimates based on published data center Water Usage Effectiveness
-              (WUE) metrics and model energy consumption benchmarks. Actual water
-              usage varies by data center location, cooling technology, and time
-              of year.{" "}
-              <a href="/methodology" className="text-water hover:underline">
-                Full methodology
-              </a>
-            </p>
+          <div className="impact-panel text-sm leading-7 text-zinc-400">
+            Estimates are based on published Water Usage Effectiveness benchmarks and model-energy
+            assumptions. Actual water use varies by facility, region, cooling infrastructure, and time.
+            <span className="mx-2 text-zinc-600">•</span>
+            <Link href="/methodology" className="impact-link">
+              Full methodology
+            </Link>
           </div>
 
-          {/* CTA */}
-          <div className="rounded-xl border border-water/20 bg-water/5 p-6 text-center">
-            <p className="text-zinc-300 mb-1">
-              Want to offset your AI water footprint?
-            </p>
-            <p className="text-sm text-zinc-500 mb-4">
-              Direct your contribution to verified water access projects.
-            </p>
-            <a
-              href="https://www.charitywater.org/donate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex px-5 py-2.5 bg-water hover:bg-water-dark text-white font-medium rounded-lg transition-colors"
-            >
-              Offset with charity: water
-            </a>
+          <div className="impact-panel">
+            <div className="impact-mini-label">Next step</div>
+            <div className="impact-grid-2 mt-5">
+              <div>
+                <h3 className="text-2xl font-display leading-none text-zinc-100">
+                  Move from estimate to reporting.
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">
+                  The long-term value is not the consumer calculator alone. It is the reporting,
+                  benchmarking, and water-risk intelligence layer behind it.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/impact-api" className="impact-button">
+                  Join API early access
+                </Link>
+                <Link href="/account" className="impact-button-secondary">
+                  Save this estimate
+                </Link>
+                <Link href="/pulse" className="impact-button-secondary">
+                  See Water Pulse
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       )}
+
+      <section className="impact-section">
+        <AccessLadder ctaLabel="Set up account access for reporting" />
+      </section>
     </div>
   );
 }
@@ -226,7 +275,7 @@ function StatCard({
   sublabel: string;
 }) {
   return (
-    <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-center">
+    <div className="impact-stat-card text-center">
       <div className="text-2xl font-bold text-zinc-100">{value}</div>
       <div className="text-sm text-zinc-400 mt-1">{label}</div>
       <div className="text-xs text-zinc-500">{sublabel}</div>
