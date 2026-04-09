@@ -26,6 +26,11 @@ interface WaterScore {
     flood_score: number;
     risk: string;
     nearby_gauges: number;
+    alerts?: string[];
+  };
+  streamflow: {
+    stations: { name: string; flow_cfs: number; status: string }[];
+    station_count: number;
   };
   concerns: { area: string; severity: string; detail: string }[];
   location: {
@@ -147,14 +152,58 @@ export default function PulsePage() {
             </div>
           )}
 
+          {/* Streamflow */}
+          {score.streamflow.station_count > 0 && (
+            <div className="rounded-xl border border-zinc-800 p-6 bg-zinc-900/50 space-y-3">
+              <h3 className="text-sm font-medium text-zinc-300">
+                Nearby Stream Gauges ({score.streamflow.station_count} USGS stations)
+              </h3>
+              {score.streamflow.stations.slice(0, 3).map((s, i) => (
+                <div key={i} className="flex items-center justify-between text-sm">
+                  <span className="text-zinc-400 truncate mr-4">{s.name}</span>
+                  <span className="font-mono text-zinc-200 shrink-0">
+                    {s.flow_cfs.toLocaleString()} cfs
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Details */}
           <div className="rounded-xl border border-zinc-800 p-6 bg-zinc-900/50 space-y-4">
             <h3 className="text-sm font-medium text-zinc-300">Details</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
-              <Detail label="Monitoring stations" value={`${score.quality.systems_checked} systems`} />
+              <Detail label="Water systems" value={`${score.quality.systems_checked} active`} />
               <Detail label="PFAS risk" value={score.quality.pfas_risk.replace(/_/g, " ")} />
               <Detail label="Drought level" value={score.drought.drought_level} />
-              <Detail label="Flood gauges" value={`${score.flood.nearby_gauges} nearby`} />
+              <Detail label="Stream gauges" value={`${score.streamflow.station_count} USGS`} />
+            </div>
+          </div>
+
+          {/* Donate CTA */}
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 text-center">
+            <h3 className="text-lg font-semibold text-zinc-100 mb-2">
+              Help protect water access
+            </h3>
+            <p className="text-sm text-zinc-400 mb-4">
+              785 million people lack clean water. Your contribution funds verified
+              water projects worldwide.
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href="https://www.charitywater.org/donate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 bg-water hover:bg-water-dark text-white text-sm font-medium rounded-lg transition-colors"
+              >
+                Donate via charity: water
+              </a>
+              <a
+                href="/footprint"
+                className="px-5 py-2.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 text-sm font-medium rounded-lg transition-colors"
+              >
+                Calculate AI footprint
+              </a>
             </div>
           </div>
 
