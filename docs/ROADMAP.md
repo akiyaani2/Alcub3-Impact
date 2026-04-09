@@ -31,6 +31,7 @@ This roadmap is public-facing. It is meant to show what is usable now, what is e
   - scoring helpers
   - reporting utilities
   - footprint and geospatial hooks
+  - examples, notebooks, and reference benchmark pack
 
 ### Observatory
 

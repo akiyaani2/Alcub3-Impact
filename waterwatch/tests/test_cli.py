@@ -36,6 +36,23 @@ def test_regions_command(capsys):
     assert "lake-mead" in payload["regions"]
 
 
+def test_locations_command(capsys):
+    payload = run_cli(["locations", "--json"], capsys)
+    assert payload["toolkit"] == "BasinKit"
+    assert payload["count"] >= 1
+
+
 def test_providers_command(capsys):
     payload = run_cli(["providers", "--json"], capsys)
     assert "openai" in payload["catalog"]["providers"]
+
+
+def test_benchmark_command(capsys, monkeypatch):
+    monkeypatch.setattr(
+        cli,
+        "run_reference_benchmarks",
+        lambda **_: {"toolkit": "BasinKit", "count": 1, "results": [{"status": "ok"}]},
+    )
+    payload = run_cli(["benchmark", "--json", "--limit", "1"], capsys)
+    assert payload["toolkit"] == "BasinKit"
+    assert payload["results"][0]["status"] == "ok"

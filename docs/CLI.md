@@ -50,6 +50,7 @@ basinkit footprint-company --cloud aws --gpu a100 --hours 100
 ```bash
 basinkit sources
 basinkit methodology
+basinkit locations --json
 ```
 
 ### Observatory-Oriented Commands
@@ -58,6 +59,13 @@ These can start as wrappers around the existing scripts and mature later:
 
 ```bash
 basinkit observatory search --region lake-mead --start 2025-01 --end 2026-04
+```
+
+### Benchmark Commands
+
+```bash
+basinkit benchmark --json
+basinkit benchmark --limit 3 --output benchmarks/latest-reference-results.json
 ```
 
 ## Output Rules
@@ -89,3 +97,4 @@ The CLI is part of the trust model because it lets people:
 - test assumptions quickly
 - reproduce examples from docs
 - see source and evidence-tier context without the marketing layer
+- run the same benchmark pack across known locations

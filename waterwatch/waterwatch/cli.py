@@ -8,6 +8,10 @@ from pathlib import Path
 from typing import Any
 
 from waterwatch import WaterIntel
+from waterwatch.benchmarks import (
+    reference_locations_payload,
+    run_reference_benchmarks,
+)
 from waterwatch.catalog import OBSERVATORY_REGIONS, footprint_catalog
 
 
@@ -155,6 +159,27 @@ def build_parser() -> argparse.ArgumentParser:
     regions.add_argument("--json", action="store_true", help="Output JSON")
     _add_output_flag(regions)
 
+    locations = subparsers.add_parser(
+        "locations", help="Show curated benchmark/reference locations"
+    )
+    locations.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(locations)
+    locations.add_argument("--fixture", help="Optional path to a JSON fixture file")
+
+    benchmark = subparsers.add_parser(
+        "benchmark", help="Run the curated reference-location benchmark pack"
+    )
+    benchmark.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(benchmark)
+    benchmark.add_argument("--fixture", help="Optional path to a JSON fixture file")
+    benchmark.add_argument("--limit", type=int, help="Limit the number of benchmark locations")
+    benchmark.add_argument(
+        "--timeout",
+        type=float,
+        default=15.0,
+        help="HTTP timeout in seconds for live benchmark calls",
+    )
+
     return parser
 
 
@@ -207,6 +232,14 @@ def main() -> None:
             "toolkit": "BasinKit",
             "regions": OBSERVATORY_REGIONS,
         }
+    elif args.command == "locations":
+        payload = reference_locations_payload(args.fixture)
+    elif args.command == "benchmark":
+        payload = run_reference_benchmarks(
+            fixture_path=args.fixture,
+            limit=args.limit,
+            timeout=args.timeout,
+        )
     else:
         parser.error(f"Unknown command: {args.command}")
         return

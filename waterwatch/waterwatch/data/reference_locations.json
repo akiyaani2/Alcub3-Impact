@@ -1,0 +1,58 @@
+{
+  "locations": [
+    {
+      "id": "phoenix-az",
+      "name": "Phoenix, Arizona",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "benchmark_focus": "urban water stress",
+      "expected_signal": "high drought sensitivity and elevated regional water stress",
+      "notes": "Use for desert-urban water-intelligence and AI infrastructure siting context."
+    },
+    {
+      "id": "tucson-az",
+      "name": "Tucson, Arizona",
+      "lat": 32.2226,
+      "lon": -110.9747,
+      "benchmark_focus": "municipal desert utility context",
+      "expected_signal": "drought and groundwater pressure in a lower-density desert city",
+      "notes": "Useful for utility and public-sector benchmark comparisons."
+    },
+    {
+      "id": "flint-mi",
+      "name": "Flint, Michigan",
+      "lat": 43.0125,
+      "lon": -83.6875,
+      "benchmark_focus": "public water trust",
+      "expected_signal": "quality and trust-oriented benchmark, not drought-led",
+      "notes": "Use for public-data transparency and quality-trust use cases."
+    },
+    {
+      "id": "jackson-ms",
+      "name": "Jackson, Mississippi",
+      "lat": 32.2988,
+      "lon": -90.1848,
+      "benchmark_focus": "infrastructure reliability",
+      "expected_signal": "utility and resilience benchmark rather than extreme basin scarcity",
+      "notes": "Useful for institutional water-system and resilience narratives."
+    },
+    {
+      "id": "new-york-ny",
+      "name": "New York, New York",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "benchmark_focus": "large-city baseline",
+      "expected_signal": "comparatively lower drought signal and stronger monitoring density",
+      "notes": "Use as a dense, better-instrumented urban comparison point."
+    },
+    {
+      "id": "lake-mead-nv",
+      "name": "Lake Mead, Nevada",
+      "lat": 36.1147,
+      "lon": -114.4942,
+      "benchmark_focus": "surface-water stress",
+      "expected_signal": "strong drought and reservoir-decline narrative",
+      "notes": "Pairs well with Observatory imagery and regional drought storytelling."
+    }
+  ]
+}

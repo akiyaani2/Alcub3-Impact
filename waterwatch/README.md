@@ -48,11 +48,27 @@ Install the package locally, then use the first CLI entry point:
 basinkit sources
 basinkit methodology
 basinkit regions --json
+basinkit locations --json
 basinkit providers --json
 basinkit pulse --lat 33.4484 --lon -112.0740 --json
 basinkit score --lat 33.4484 --lon -112.0740 --json
+basinkit benchmark --limit 3 --json
 basinkit footprint --provider openai --model gpt-4o --queries 10000 --json
 ```
+
+## Examples, Fixtures, And Benchmarks
+
+The toolkit now includes:
+
+- `examples/quickstart.py`
+- `examples/reference_benchmarks.py`
+- `examples/company_footprint.py`
+- `waterwatch/data/reference_locations.json`
+- `benchmarks/reference-locations-2026-04-09.md`
+- `notebooks/quickstart.ipynb`
+- `notebooks/reference_locations.ipynb`
+
+These are meant to make the toolkit inspectable and reproducible, not just readable.
 
 ## Design Intent
 

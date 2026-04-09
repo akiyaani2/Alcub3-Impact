@@ -20,9 +20,9 @@ class WaterIntel:
         footprint = intel.ai_water_footprint(provider="openai", model="gpt-4", queries_per_month=10000)
     """
 
-    def __init__(self) -> None:
-        self.quality = WaterQualityClient()
-        self.climate = ClimateClient()
+    def __init__(self, *, timeout: float = 30.0) -> None:
+        self.quality = WaterQualityClient(timeout=timeout)
+        self.climate = ClimateClient(timeout=timeout)
         self.footprint = FootprintCalculator()
         self._scorer = WaterScorer()
 
@@ -85,3 +85,8 @@ class WaterIntel:
     def observatory_regions(self) -> dict:
         """Return the curated public observatory regions."""
         return OBSERVATORY_REGIONS
+
+    def close(self) -> None:
+        """Close any open HTTP clients."""
+        self.quality.close()
+        self.climate.close()

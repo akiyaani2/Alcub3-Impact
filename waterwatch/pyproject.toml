@@ -55,6 +55,9 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["."]
 
+[tool.setuptools.package-data]
+waterwatch = ["data/*.json"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py310"
