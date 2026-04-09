@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 from typing import Any
 
 from waterwatch import WaterIntel
+from waterwatch.catalog import OBSERVATORY_REGIONS, footprint_catalog
 
 
 def _dump(payload: dict[str, Any], *, as_json: bool) -> None:
@@ -14,6 +16,14 @@ def _dump(payload: dict[str, Any], *, as_json: bool) -> None:
         print(json.dumps(payload, indent=2, sort_keys=True))
         return
     print(json.dumps(payload, indent=2))
+
+
+def _emit(payload: dict[str, Any], *, as_json: bool, output_path: str | None) -> None:
+    if output_path:
+        output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(payload, indent=2, sort_keys=as_json))
+    _dump(payload, as_json=as_json)
 
 
 def _sources_payload() -> dict[str, Any]:
@@ -70,6 +80,10 @@ def _methodology_payload() -> dict[str, Any]:
     }
 
 
+def _add_output_flag(command: argparse.ArgumentParser) -> None:
+    command.add_argument("--output", help="Write JSON output to a file")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="basinkit",
@@ -79,27 +93,39 @@ def build_parser() -> argparse.ArgumentParser:
 
     quality = subparsers.add_parser("quality", help="Lookup water quality context")
     quality.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(quality)
     quality.add_argument("--lat", type=float, required=True)
     quality.add_argument("--lon", type=float, required=True)
     quality.add_argument("--radius-miles", type=float, default=25)
 
     drought = subparsers.add_parser("drought", help="Lookup drought status")
     drought.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(drought)
     drought.add_argument("--lat", type=float, required=True)
     drought.add_argument("--lon", type=float, required=True)
 
     flood = subparsers.add_parser("flood", help="Lookup flood risk")
     flood.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(flood)
     flood.add_argument("--lat", type=float, required=True)
     flood.add_argument("--lon", type=float, required=True)
 
     score = subparsers.add_parser("score", help="Compute composite water score")
     score.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(score)
     score.add_argument("--lat", type=float, required=True)
     score.add_argument("--lon", type=float, required=True)
 
+    pulse = subparsers.add_parser("pulse", help="Return the full Water Pulse bundle")
+    pulse.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(pulse)
+    pulse.add_argument("--lat", type=float, required=True)
+    pulse.add_argument("--lon", type=float, required=True)
+    pulse.add_argument("--radius-miles", type=float, default=25)
+
     footprint = subparsers.add_parser("footprint", help="Estimate AI water footprint")
     footprint.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(footprint)
     footprint.add_argument("--provider", default="openai")
     footprint.add_argument("--model", default="gpt-4")
     footprint.add_argument("--queries", type=int, default=1000)
@@ -108,15 +134,26 @@ def build_parser() -> argparse.ArgumentParser:
         "footprint-company", help="Estimate company compute water footprint"
     )
     company.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(company)
     company.add_argument("--cloud", default="aws")
     company.add_argument("--gpu", default="a100")
     company.add_argument("--hours", type=float, default=100)
 
     sources = subparsers.add_parser("sources", help="Show source families and citation docs")
     sources.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(sources)
 
     methodology = subparsers.add_parser("methodology", help="Show evidence-tier and method summary")
     methodology.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(methodology)
+
+    providers = subparsers.add_parser("providers", help="Show supported footprint providers and models")
+    providers.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(providers)
+
+    regions = subparsers.add_parser("regions", help="Show curated public observatory regions")
+    regions.add_argument("--json", action="store_true", help="Output JSON")
+    _add_output_flag(regions)
 
     return parser
 
@@ -138,6 +175,12 @@ def main() -> None:
         payload = intel.flood_risk(lat=args.lat, lon=args.lon)
     elif args.command == "score":
         payload = intel.water_score(lat=args.lat, lon=args.lon)
+    elif args.command == "pulse":
+        payload = intel.pulse(
+            lat=args.lat,
+            lon=args.lon,
+            radius_miles=args.radius_miles,
+        )
     elif args.command == "footprint":
         payload = intel.ai_water_footprint(
             provider=args.provider,
@@ -154,11 +197,21 @@ def main() -> None:
         payload = _sources_payload()
     elif args.command == "methodology":
         payload = _methodology_payload()
+    elif args.command == "providers":
+        payload = {
+            "toolkit": "BasinKit",
+            "catalog": footprint_catalog(),
+        }
+    elif args.command == "regions":
+        payload = {
+            "toolkit": "BasinKit",
+            "regions": OBSERVATORY_REGIONS,
+        }
     else:
         parser.error(f"Unknown command: {args.command}")
         return
 
-    _dump(payload, as_json=args.json)
+    _emit(payload, as_json=args.json, output_path=getattr(args, "output", None))
 
 
 if __name__ == "__main__":

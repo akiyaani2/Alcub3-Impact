@@ -47,6 +47,9 @@ Install the package locally, then use the first CLI entry point:
 ```bash
 basinkit sources
 basinkit methodology
+basinkit regions --json
+basinkit providers --json
+basinkit pulse --lat 33.4484 --lon -112.0740 --json
 basinkit score --lat 33.4484 --lon -112.0740 --json
 basinkit footprint --provider openai --model gpt-4o --queries 10000 --json
 ```

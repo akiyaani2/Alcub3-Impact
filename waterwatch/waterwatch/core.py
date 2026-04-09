@@ -6,6 +6,7 @@ from waterwatch.quality import WaterQualityClient
 from waterwatch.climate import ClimateClient
 from waterwatch.footprint import FootprintCalculator
 from waterwatch.score import WaterScorer
+from waterwatch.catalog import OBSERVATORY_REGIONS
 
 
 class WaterIntel:
@@ -52,3 +53,35 @@ class WaterIntel:
         return self._scorer.compute(
             quality=quality_data, drought=drought_data, flood=flood_data
         )
+
+    def pulse(self, *, lat: float, lon: float, radius_miles: float = 25) -> dict:
+        """Return the public Water Pulse bundle for a location."""
+        quality_data = self.water_quality(lat=lat, lon=lon, radius_miles=radius_miles)
+        drought_data = self.drought_status(lat=lat, lon=lon)
+        flood_data = self.flood_risk(lat=lat, lon=lon)
+        score_data = self._scorer.compute(
+            quality=quality_data,
+            drought=drought_data,
+            flood=flood_data,
+        )
+        return {
+            "location": {"lat": lat, "lon": lon, "radius_miles": radius_miles},
+            "score": score_data,
+            "quality": quality_data,
+            "drought": drought_data,
+            "flood": flood_data,
+            "evidence_tiers": {
+                "score": "modeled",
+                "quality": "measured",
+                "drought": "measured",
+                "flood": "measured",
+            },
+            "docs": {
+                "methodology": "docs/METHODOLOGY.md",
+                "sources": "docs/SOURCES.md",
+            },
+        }
+
+    def observatory_regions(self) -> dict:
+        """Return the curated public observatory regions."""
+        return OBSERVATORY_REGIONS
