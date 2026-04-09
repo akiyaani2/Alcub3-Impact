@@ -23,36 +23,35 @@ export function ScoreRing({ score, grade, label, size = 160 }: ScoreRingProps) {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <svg width={size} height={size} className="-rotate-90">
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke="#27272a"
-          strokeWidth={strokeWidth}
-          fill="none"
-        />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke={color}
-          strokeWidth={strokeWidth}
-          fill="none"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          className="transition-all duration-1000 ease-out"
-        />
-      </svg>
-      <div
-        className="absolute flex flex-col items-center justify-center"
-        style={{ width: size, height: size }}
-      >
-        <span className="text-4xl font-bold" style={{ color }}>
-          {score}
-        </span>
-        <span className="text-lg font-semibold text-zinc-300">{grade}</span>
+      <div className="relative" style={{ width: size, height: size }}>
+        <svg width={size} height={size} className="-rotate-90">
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke="#27272a"
+            strokeWidth={strokeWidth}
+            fill="none"
+          />
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke={color}
+            strokeWidth={strokeWidth}
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            strokeLinecap="round"
+            className="transition-all duration-1000 ease-out"
+          />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-4xl font-bold" style={{ color }}>
+            {score}
+          </span>
+          <span className="text-lg font-semibold text-zinc-300">{grade}</span>
+        </div>
       </div>
       <span className="text-sm text-zinc-400">{label}</span>
     </div>
