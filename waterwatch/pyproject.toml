@@ -32,6 +32,9 @@ Homepage = "https://impact.alcub3.com"
 Repository = "https://github.com/akiyaani2/Alcub3-Impact"
 Documentation = "https://github.com/akiyaani2/Alcub3-Impact/tree/main/docs"
 
+[project.scripts]
+basinkit = "waterwatch.cli:main"
+
 [project.optional-dependencies]
 satellite = [
     "rasterio>=1.3",

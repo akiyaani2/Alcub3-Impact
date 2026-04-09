@@ -67,7 +67,7 @@ Key themes:
 
 This domain informs:
 
-- WaterWatch robustness
+- BasinKit robustness
 - time-series continuity
 - scoring reliability when public data is incomplete
 
@@ -86,7 +86,7 @@ Current examples:
 - stress-weighting work sharpens the long-term footprint model
 - water-agent research informs future Water Pulse interaction patterns
 - geospatial PFAS and groundwater work informs the next modeled risk layers
-- imputation and scoring literature informs WaterWatch reliability
+- imputation and scoring literature informs BasinKit reliability
 
 ## Public Research Discipline
 
@@ -100,3 +100,7 @@ We should not surface a research result publicly as a product claim unless it ha
 ## Canonical Future Home
 
 As the broader ALCUB3 research surface matures, the canonical publication archive may move to a dedicated research domain. Until then, this repo should keep the research summary short, useful, and tied to actual product surfaces.
+
+## Source Map
+
+For the public source families and citation layer used in this repo, see [SOURCES.md](SOURCES.md).

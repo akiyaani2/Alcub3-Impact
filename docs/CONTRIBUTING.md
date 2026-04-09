@@ -6,7 +6,7 @@ This repo mixes a public product surface, an open-source toolkit, and Labs workf
 
 ## Good Contribution Areas
 
-- public-data connectors in `waterwatch/`
+- public-data connectors in `waterwatch/` (public toolkit: BasinKit)
 - scoring utilities and tests
 - observatory workflow improvements
 - docs and methodology clarity
@@ -30,7 +30,7 @@ npm install
 npm run dev
 ```
 
-### WaterWatch
+### BasinKit
 
 ```bash
 cd waterwatch
@@ -52,6 +52,7 @@ If you touch copy, docs, or user-facing scoring language:
 - do not present modeled risk as direct diagnosis
 - do not add investor or fundraising language to public docs
 - do not use “no competition” or “first ever” language unless it is carefully defensible
+- cite the relevant public source family in `docs/SOURCES.md` when you add a new method or claim
 
 ## Pull Requests
 
@@ -70,9 +71,11 @@ If you make a meaningful public-facing change, update the relevant doc:
 
 - `README.md`
 - `docs/VISION.md`
+- `docs/NAMING.md`
 - `docs/METHODOLOGY.md`
 - `docs/ROADMAP.md`
 - `docs/RESEARCH.md`
+- `docs/SOURCES.md`
 
 ## Questions
 

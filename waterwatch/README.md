@@ -1,5 +1,7 @@
 # WaterWatch
 
+Public naming is moving toward **BasinKit** for the toolkit and `basinkit` for the CLI. The current Python package path remains `waterwatch` during the transition.
+
 WaterWatch is the open-source developer layer for ALCUB3 Impact.
 
 It is a Python toolkit for water intelligence primitives built on public data and transparent methods.
@@ -36,6 +38,17 @@ footprint = intel.ai_water_footprint(
     model="gpt-4",
     queries_per_month=10000,
 )
+```
+
+## CLI
+
+Install the package locally, then use the first CLI entry point:
+
+```bash
+basinkit sources
+basinkit methodology
+basinkit score --lat 33.4484 --lon -112.0740 --json
+basinkit footprint --provider openai --model gpt-4o --queries 10000 --json
 ```
 
 ## Design Intent

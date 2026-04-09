@@ -13,7 +13,7 @@ ALCUB3 Impact exists to close that gap.
 The venture uses open data, geospatial sensing, public methodology, and selective model infrastructure to create a water-intelligence stack with four visible surfaces:
 
 - **Water Pulse**: a guest-first public product
-- **WaterWatch**: an open-source developer layer
+- **BasinKit**: an open-source developer layer
 - **Observatory**: a Labs proof surface
 - **Impact API**: a hosted intelligence layer for developers and institutional users
 
@@ -104,7 +104,7 @@ Current focus:
 - public methodology
 - accessible product interface
 
-### WaterWatch
+### BasinKit
 
 MIT-licensed Python toolkit for water intelligence primitives.
 

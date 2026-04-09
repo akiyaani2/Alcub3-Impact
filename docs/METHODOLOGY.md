@@ -143,3 +143,5 @@ Suggested public format:
 This file is the public product-facing summary.
 
 As the broader ALCUB3 research surface matures, canonical deeper methods, benchmark notes, and reports should live there. Impact should keep the approachable trust layer because product users need a readable explanation, not a paper archive.
+
+For the public source map behind this repo, see [SOURCES.md](SOURCES.md).

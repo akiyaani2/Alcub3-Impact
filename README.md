@@ -9,7 +9,7 @@ ALCUB3 Impact is the water-intelligence venture built on ALCUB3's shared platfor
 | Surface | Status | What it does |
 | --- | --- | --- |
 | `Water Pulse` | Beta | Consumer water lookup by zip code with public-data scoring and contextual risk surfaces |
-| `WaterWatch` | Live | MIT-licensed Python toolkit for water intelligence primitives |
+| `BasinKit` | Live | MIT-licensed Python toolkit for water intelligence primitives (`waterwatch/` during transition) |
 | `Observatory` | Labs | Satellite and geospatial workflows for water change and monitoring |
 | `Impact API` | Waitlist / Beta | Hosted water intelligence and reporting infrastructure |
 
@@ -18,7 +18,7 @@ ALCUB3 Impact is the water-intelligence venture built on ALCUB3's shared platfor
 This repository is intentionally mixed:
 
 - **Open-source / public**
-  - WaterWatch library
+  - BasinKit library
   - public methodology
   - observatory scripts and example outputs
   - guest-first web experience
@@ -53,7 +53,7 @@ Guest-first consumer entry point for local water visibility.
 
 Planned layers include PFAS risk, groundwater health, and infrastructure risk. Those should be presented as modeled or estimated outputs, not as direct diagnosis.
 
-### WaterWatch
+### BasinKit
 
 MIT-licensed Python toolkit for fetching, scoring, and reporting water intelligence.
 
@@ -102,7 +102,7 @@ Useful routes:
 - `/answers` — public product FAQ / explanation
 - `/account` — progressive access and gating model
 
-### WaterWatch
+### BasinKit
 
 ```bash
 cd waterwatch
@@ -161,7 +161,7 @@ alcub3-impact/
 │   ├── src/app/            # Routes and API handlers
 │   ├── src/components/     # Shared UI components
 │   └── public/             # Static assets
-├── waterwatch/             # MIT Python toolkit
+├── waterwatch/             # BasinKit toolkit package (path retained during transition)
 │   ├── waterwatch/         # Core package
 │   └── tests/             # Library tests
 ├── observatory/            # Geospatial / satellite workflows
@@ -175,9 +175,12 @@ alcub3-impact/
 ## Documentation
 
 - [Vision](docs/VISION.md)
+- [Naming](docs/NAMING.md)
 - [Methodology](docs/METHODOLOGY.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Research](docs/RESEARCH.md)
+- [Sources](docs/SOURCES.md)
+- [CLI](docs/CLI.md)
 - [Contributing](docs/CONTRIBUTING.md)
 - [Security](docs/SECURITY.md)
 
